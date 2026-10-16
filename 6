@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+#define N 10
+
+float calculateAverage(float speed[], int n)
+{
+    float sum = 0;
+    int i;
+
+    for (i = 0; i < n; i++)
+    {
+        sum = sum + speed[i];
+    }
+
+    return sum / n;
+}
+
+int main()
+{
+    float speed[N], highest, lowest;
+    int i;
+
+    printf("ROBOTIC MOTOR SPEED ANALYSIS\n");
+
+    for (i = 0; i < N; i++)
+    {
+        printf("Enter motor speed %d (RPM): ", i + 1);
+        scanf("%f", &speed[i]);
+    }
+
+    highest = speed[0];
+    lowest = speed[0];
+
+    printf("\n--- MOTOR SPEED REPORT ---\n");
+
+    for (i = 0; i < N; i++)
+    {
+        printf("Interval %d: %.2f RPM\n",
+               i + 1, speed[i]);
+
+        if (speed[i] > highest)
+        {
+            highest = speed[i];
+        }
+
+        if (speed[i] < lowest)
+        {
+            lowest = speed[i];
+        }
+    }
+
+    printf("\nAverage Speed: %.2f RPM\n",
+           calculateAverage(speed, N));
+
+    printf("Highest Speed: %.2f RPM\n", highest);
+
+    printf("Lowest Speed: %.2f RPM\n", lowest);
+
+    printf("\nMotor Analysis Completed.\n");
+
+    return 0;
+}
